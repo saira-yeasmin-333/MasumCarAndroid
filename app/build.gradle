@@ -68,9 +68,8 @@ dependencies {
 
     //connect to amazon s3
 
-
-
-    implementation 'com.amazonaws:aws-android-sdk-core:2.7.+'
+    implementation 'com.amazonaws:aws-android-sdk-cognito:2.6.31'
+    implementation 'com.amazonaws:aws-android-sdk-core:2.23.0'
     implementation 'com.amazonaws:aws-android-sdk-s3:2.7.+'
     implementation 'com.amazonaws:aws-android-sdk-ddb:2.7.+'
 

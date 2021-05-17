@@ -48,6 +48,17 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.amazonaws.auth.BasicSessionCredentials;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -244,17 +255,17 @@ public class LoginFragment extends Fragment {
             AWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
             Log.e(TAG, "uploadImage: "+credentials.getAWSAccessKeyId()+" "+credentials.getAWSSecretKey());
             AmazonS3 s3 = new AmazonS3Client(credentials);
-            java.security.Security.setProperty("networkaddress.cache.ttl" , "60");
+            //java.security.Security.setProperty("networkaddress.cache.ttl" , "60");
             s3.setRegion(Region.getRegion(Regions.US_EAST_2));
 
 
             s3.setEndpoint("https://s3-us-east-2.amazonaws.com/");
 
-            List<Bucket> buckets=s3.listBuckets();
+            /*List<Bucket> buckets=s3.listBuckets();
             for(Bucket bucket:buckets){
                 Log.e("Bucket ","Name "+bucket.getName()+" Owner "+bucket.getOwner()+ " Date " + bucket.getCreationDate());
-            }
-            TransferUtility transferUtility = new TransferUtility(s3, getActivity().getApplicationContext());
+            }*/
+            TransferUtility transferUtility = new TransferUtility(s3, getContext());
 
 
             File f = new File(getActivity().getCacheDir(),"image.jpg");
@@ -262,7 +273,7 @@ public class LoginFragment extends Fragment {
             photo_bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , bos);
             byte[] bitmapdata = bos.toByteArray();
 
-            FileOutputStream fos = null;
+            FileOutputStream fos ;
 
             Log.e(TAG, "uploadImage: before trying " );
             try {
@@ -279,7 +290,7 @@ public class LoginFragment extends Fragment {
 
 
             TransferObserver observer = transferUtility.upload(MY_BUCKET,OBJECT_KEY,f, CannedAccessControlList.PublicRead);
-            final String finalFile_name = file_name;
+
             //final JSONObject newJsonObject=jsonObject;
             observer.setTransferListener(new TransferListener() {
                 @Override

@@ -15,27 +15,6 @@
           }
         }
       }
-    },
-    "api3417a6c3": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "carwarehouseandroidd07e77c3",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
-    }
-  },
-  "function": {
-    "carwarehouseandroidd07e77c3": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
     }
   }
 }
