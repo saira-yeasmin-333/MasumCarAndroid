@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.LoginFragment">
+
+
+    <TextView
+        android:id="@+id/welcome_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif-black"
+        android:text="WELCOME"
+        android:textAlignment="center"
+        android:textColor="#BF271B"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/car_login"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:src="@drawable/icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_login" />
+
+    <TextView
+        android:id="@+id/carwarehouse_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Carwarehouse"
+        android:textAlignment="center"
+        android:textColor="#AC1212"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car_login" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_login"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:backgroundTint="#FAE6DC"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewer_login_btn"
+        app:layout_constraintVertical_bias="0.0" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="email"
+                android:id="@+id/username_text"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/email_login"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="4dp"
+                android:shadowColor="@color/purple_700"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FABD07"
+                android:layout_below="@id/username_text"
+                android:inputType="textEmailAddress"
+             />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Password"
+                android:id="@+id/password_text"
+                android:layout_below="@id/email_login"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/password_login"
+                android:layout_width="match_parent"
+                android:shadowColor="@color/purple_700"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FABD07"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="4dp"
+                android:layout_below="@id/password_text"
+                android:inputType="textPassword" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Role"
+                android:id="@+id/role_text"
+                android:layout_below="@id/password_login"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"/>
+
+            <Spinner
+                android:id="@+id/role_spinner"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+
+                android:backgroundTint="@color/purple_700"
+                android:layout_marginTop="4dp"
+                android:layout_below="@id/role_text"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:id="@+id/login_btn"
+                android:layout_below="@id/role_spinner"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:text="log in"
+                android:backgroundTint="#FF9800"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/viewer_login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FF9800"
+        android:outlineAmbientShadowColor="@color/black"
+        android:shadowColor="@color/black"
+        android:shadowDx="@android:integer/config_longAnimTime"
+        android:text="login as a viewer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carwarehouse_login" />
+
+    <Button
+        android:id="@+id/upload_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewer_login_btn"
+        app:layout_constraintTop_toBottomOf="@+id/carwarehouse_login" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

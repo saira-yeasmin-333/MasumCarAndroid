@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-carwarehouseandroid-dev-195948-authRole",
+      "UnauthRoleArn": "arn:aws:iam::987738309836:role/amplify-carwarehouseandroid-dev-195948-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::987738309836:role/amplify-carwarehouseandroid-dev-195948-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-carwarehouseandroid-dev-195948-deployment",
+      "UnauthRoleName": "amplify-carwarehouseandroid-dev-195948-unauthRole",
+      "StackName": "amplify-carwarehouseandroid-dev-195948",
+      "StackId": "arn:aws:cloudformation:us-east-1:987738309836:stack/amplify-carwarehouseandroid-dev-195948/76b58330-b717-11eb-acff-0e4121f4bda3",
+      "AmplifyAppId": "d1u2hbk9t1szmw"
+    }
+  }
+}
