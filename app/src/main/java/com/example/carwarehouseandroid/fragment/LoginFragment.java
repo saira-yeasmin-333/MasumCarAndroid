@@ -273,7 +273,7 @@ public class LoginFragment extends Fragment {
                 Log.e("Bucket ","Name "+bucket.getName()+" Owner "+bucket.getOwner()+ " Date " + bucket.getCreationDate());
             }*/
             TransferUtility transferUtility = new TransferUtility(s3, getContext());
-
+////something is i
 
             File f =  new File(getActivity().getCacheDir(),"image.jpg");
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
