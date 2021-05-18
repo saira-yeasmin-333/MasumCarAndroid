@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
@@ -85,6 +86,7 @@ public class LoginFragment extends Fragment {
     private Uri imageUri;
     private ProgressDialog loadingBar;
     private Bitmap photo_bitmap;
+    AmazonS3 s3;
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -255,12 +257,17 @@ public class LoginFragment extends Fragment {
             AWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
             Log.e(TAG, "uploadImage: "+credentials.getAWSAccessKeyId()+" "+credentials.getAWSSecretKey());
             AmazonS3 s3 = new AmazonS3Client(credentials);
-            //java.security.Security.setProperty("networkaddress.cache.ttl" , "60");
+            java.security.Security.setProperty("networkaddress.cache.ttl" , "60");
             s3.setRegion(Region.getRegion(Regions.US_EAST_2));
+
+
 
 
             s3.setEndpoint("https://s3-us-east-2.amazonaws.com/");
 
+
+            s3.setRegion(Region.getRegion(Regions.US_EAST_1));
+/// here list of buckets which are full of evils don t permit accesss
             /*List<Bucket> buckets=s3.listBuckets();
             for(Bucket bucket:buckets){
                 Log.e("Bucket ","Name "+bucket.getName()+" Owner "+bucket.getOwner()+ " Date " + bucket.getCreationDate());
@@ -268,7 +275,7 @@ public class LoginFragment extends Fragment {
             TransferUtility transferUtility = new TransferUtility(s3, getContext());
 
 
-            File f = new File(getActivity().getCacheDir(),"image.jpg");
+            File f =  new File(getActivity().getCacheDir(),"image.jpg");
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             photo_bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , bos);
             byte[] bitmapdata = bos.toByteArray();
@@ -286,6 +293,8 @@ public class LoginFragment extends Fragment {
                 e.printStackTrace();
                 Log.d("amazon",e.getMessage());
             }
+
+            Log.e(TAG, "uploadImage: file prperty"+f.length()+","+f.exists());
 
 
 
