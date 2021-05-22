@@ -4,6 +4,7 @@ import androidx.room.Delete;
 
 import com.example.carwarehouseandroid.Model.AuthToken;
 import com.example.carwarehouseandroid.Model.Car;
+import com.example.carwarehouseandroid.Model.CarImage;
 import com.example.carwarehouseandroid.Model.CarReg;
 import com.example.carwarehouseandroid.Model.UserLogin;
 import com.example.carwarehouseandroid.rootModel.CarRegister;
@@ -31,17 +32,7 @@ public interface JsonApiEndPoints {
     @POST("api/users/manufacturer/login")
     Call<AuthToken> login (@Body UserLogin login);
 
-    @POST("api/users/manufacturer/login")
-    Call<JsonObject> login2 (@Body UserLogin login);
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @GET("api/users/manufacturer/car/getById")
-    Call<RootcarId>carId(@QueryMap Map<String, Integer> parameters, @Header("authorization") String authHeader);
-
-    @GET("api/users/viewer/car/getById")
-    Call<Car>CarId(@Body int id);
-
-    @GET("api/users/viewer/car/getAll")
-    Call<List<Car>>AllCar();
 
     @GET("api/users/viewer/car/getAll")
     Call<CarRoot>AllCar1();
@@ -57,6 +48,12 @@ public interface JsonApiEndPoints {
 
     @DELETE("api/users/manufacturer/car/delete")
     Call<CarRegister>deleteCar(@QueryMap Map<String, Integer> parameters, @Header("authorization") String authHeader);
+
+    @POST("api/users/manufacturer/car/image")
+    Call<CarRegister>uploadImage(@Body CarImage carImage, @Header("authorization") String authHeader);
+
+    @PUT("api/users/viewer/car/buy")
+    Call<CarRegister>buyCar(@Query("id") int id);
 
 
 }

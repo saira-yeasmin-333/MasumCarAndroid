@@ -1,22 +1,13 @@
 package com.example.carwarehouseandroid.adapter;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,37 +15,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.carwarehouseandroid.Model.Car;
 import com.example.carwarehouseandroid.R;
-import com.example.carwarehouseandroid.TokenManager;
-import com.example.carwarehouseandroid.api.ApiService;
-import com.example.carwarehouseandroid.fragment.EditCarFragment;
-import com.example.carwarehouseandroid.fragment.HomeFragment;
-import com.example.carwarehouseandroid.rootModel.CarRegister;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+public class CarViewerAdapter extends ListAdapter<Car,CarViewerAdapter.CarHolder> {
+    public static final String TAG = "CarViewerAdapter->";
+    private CarViewerAdapter.OnItemClickListener listener;
 
-public class CarAdapter extends ListAdapter<Car,CarAdapter.CarHolder> {
-    public static final String TAG = "CarAdapter->";
-    private OnChildClickListener listener;
 
-    public CarAdapter() {
+    public CarViewerAdapter() {
         super(DIFF_CALLBACK);
     }
     private static final DiffUtil.ItemCallback<Car>DIFF_CALLBACK=new DiffUtil.ItemCallback<Car>() {
         @Override
         public boolean areItemsTheSame(@NonNull Car oldItem, @NonNull Car newItem) {
-            return oldItem.getCar_id()==newItem.getCar_id();
+            return oldItem.getRegistration_id()==newItem.getRegistration_id();
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Car oldItem, @NonNull Car newItem) {
             return oldItem.toString().equals(newItem.toString());
+
         }
     };
 
@@ -63,10 +45,8 @@ public class CarAdapter extends ListAdapter<Car,CarAdapter.CarHolder> {
     public CarHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.car_item_layout, parent, false);
-        return new CarHolder(itemView);
+        return new CarViewerAdapter.CarHolder(itemView);
     }
-
-
 
     @Override
     public void onBindViewHolder(@NonNull CarHolder holder, int position) {
@@ -85,40 +65,15 @@ public class CarAdapter extends ListAdapter<Car,CarAdapter.CarHolder> {
         }else{
             Log.e(TAG, "onBindViewHolder: carid ->"+currentCar.getRegistration_id()+" image-> "+currentCar.getImage());
         }
-
-        holder.imageView1.setOnClickListener(v -> {
-          //  showDeleteDialogue(v.getContext(),currentCar,position);
-            if(listener!=null){
-                listener.onDeleteButtonClicked(currentCar,position);
-            }else{
-                Log.e(TAG, "onBindViewHolder(): set listener using setChildListener");
-            }
-        });
-
-        holder.imageView2.setOnClickListener(v -> {
-            if(listener!=null){
-                listener.onEidtButtonClicked(currentCar);
-            }else{
-                Log.e(TAG, "onBindViewHolder(): set listener using setChildListener");
-            }
-        });
-
-
     }
+
+
 
     public Car getCarAt(int position){
         return getItem(position);
-    }
-    /*
-    @Override
-    public int getItemCount() {
-        return cars.size();
+
     }
 
-    public void setCars(List<Car> cars) {
-        this.cars= cars;
-        notifyDataSetChanged();
-    }*/
 
 
     class CarHolder extends RecyclerView.ViewHolder{
@@ -136,16 +91,25 @@ public class CarAdapter extends ListAdapter<Car,CarAdapter.CarHolder> {
             imageView1=itemView.findViewById(R.id.delete_manu_home);
             imageView2=itemView.findViewById(R.id.edit_manu_home);
             imageView3=itemView.findViewById(R.id.car_image_adapter);
+            imageView1.setVisibility(View.INVISIBLE);
+            imageView2.setVisibility(View.INVISIBLE);
+
+            itemView.setOnClickListener(v -> {
+                if(listener!=null){
+                    int position=getAdapterPosition();
+                    if(listener!=null&&position!=RecyclerView.NO_POSITION)
+                        listener.buyCar(getCarAt(getAdapterPosition()));
+                }
+            });
 
         }
     }
 
-    public interface OnChildClickListener {
-        void onDeleteButtonClicked(Car car,int i);
-        void onEidtButtonClicked(Car car);
+    public interface OnItemClickListener {
+        void buyCar(Car car);
 
     }
-    public void setOnChildClickListener(OnChildClickListener listener) {
+    public void setOnItemClickListener(CarViewerAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
 }

@@ -96,18 +96,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/reg_id_edit" />
 
-        <EditText
-            android:id="@+id/edit_image_name"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="mini-cooper-3-door.jpg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/car_image_edit" />
-
         <TextView
             android:id="@+id/textView3"
             android:layout_width="0dp"
@@ -227,7 +215,7 @@
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_image_name" />
+            app:layout_constraintTop_toBottomOf="@+id/car_image_edit" />
 
         <Button
             android:id="@+id/submit_btn"

@@ -3,10 +3,37 @@ package com.example.carwarehouseandroid.Model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.Gson;
+@Entity(tableName = "car_table")
 public class Car {
 
-    private int registration_id,year,price,quantity,m_id,car_id;
-    private String make,model,colour;
+    @PrimaryKey
+    private int registration_id;
+    private int year,price,quantity,m_id;
+    private int car_id;
+    private String make,model,colour,image;
+
+
+    public Car(int registration_id, int year, int price, int quantity, int m_id,  String make, String model, String colour, String image) {
+        this.registration_id = registration_id;
+        this.year = year;
+        this.price = price;
+        this.quantity = quantity;
+        this.m_id = m_id;
+        this.make = make;
+        this.model = model;
+        this.colour = colour;
+        this.image = image;
+    }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getColour() {
         return colour;
@@ -16,19 +43,6 @@ public class Car {
         this.colour = colour;
     }
 
-    public Car(int registration_id, int year, int price, int quantity, int m_id, String make, String model, String colour) {
-        this.registration_id = registration_id;
-        this.year = year;
-        this.price = price;
-        this.quantity = quantity;
-        this.m_id = m_id;
-        this.make = make;
-        this.model = model;
-        this.colour = colour;
-    }
-
-    public Car() {
-    }
 
    public int getCar_id() {
         return car_id;
@@ -96,16 +110,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "registration_id=" + registration_id +
-                ", year=" + year +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", m_id=" + m_id +
-                ", car_id=" + car_id +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", colour='" + colour + '\'' +
-                '}';
+        return new Gson().toJson(this);
     }
 }

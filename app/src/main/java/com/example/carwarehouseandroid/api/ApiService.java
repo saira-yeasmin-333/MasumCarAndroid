@@ -19,7 +19,7 @@ public class ApiService {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/")
+                .baseUrl("https://vj4z2680td.execute-api.ap-south-1.amazonaws.com/dev/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

@@ -149,25 +149,15 @@
         android:id="@+id/viewer_login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#FF9800"
         android:outlineAmbientShadowColor="@color/black"
         android:shadowColor="@color/black"
         android:shadowDx="@android:integer/config_longAnimTime"
         android:text="login as a viewer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carwarehouse_login" />
 
-    <Button
-        android:id="@+id/upload_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/viewer_login_btn"
-        app:layout_constraintTop_toBottomOf="@+id/carwarehouse_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
